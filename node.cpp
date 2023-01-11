@@ -11,8 +11,8 @@ Node::Node() {
 
 
 Node::Node(Student* newStudent) {
-  //myStudent = newStudent;
-  //problems
+  myStudent = newStudent;
+  //problems? doesent quit at this though
 
   //do something about node* not existing
 }
