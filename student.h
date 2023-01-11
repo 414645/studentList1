@@ -10,7 +10,7 @@ class Student {
  public:
   Student(); //not used
   Student(char*, char*, int, float);
-  ~Item(); //char* will need delete
+  ~Student(); //char* will need delete
   char* getFirst();
   char* getLast();
   int getID();

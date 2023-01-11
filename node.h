@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <cstring>
-#include "student.ccp"
-//format? ^^^^^     also assumption?
+
+#include "student.h"
+//format? ^^^^^   .h not cpp
 
 //needs a pointer to student and next node
 //also funcions
 
-class Student {
+class Node {
  public:
   Node(); //not used
   Node(Student*);
@@ -23,8 +24,8 @@ class Student {
   
  private:
   //absoultit butchered come back later
-  Node* nextNode = new Node*;
-  Student* myStudent = new Student*;
+  Node* nextNode = new Node;
+  Student* myStudent = new Student;
   //none?
 };
 
