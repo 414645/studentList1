@@ -11,8 +11,9 @@ Node::Node() {
 
 
 Node::Node(Student* newStudent) {
+  cout << "hello world" << endl;
   myStudent = newStudent;
-  //problems? doesent quit at this though
+  //line of code above works
 
   //do something about node* not existing
 }

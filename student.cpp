@@ -9,7 +9,8 @@ Student::Student() {
 
 }
 
-Student::Student(char* newFirst, char* newLast,
+Student::Student(char* newFirst,
+		 char* newLast,
 		 int newID, float  newGPA) {
   strcpy(first, newFirst);
   strcpy(last, newLast);

@@ -42,12 +42,33 @@ int main() {
   }
 }
 
-void addStudent() {
-  //ADD needs first, last, id, gpa
-  //needs recursion
-  //sorts from least to greatest Id of were to put new student
 
-  cout << "add" << endl;
+
+//ADD needs first, last, id, gpa
+//needs recursion
+//sorts from least to greatest Id of were to put new student
+void addStudent() {
+  char first[10];
+  char last[10];
+  //char* input[10];
+  //char* input[10];
+  
+  cout << "Enter the Students first name" << endl;
+  cin.getline(first, 10);
+  cout << "Enter the Students last name" << endl;
+  cin.getline(last, 10);
+
+  Student* test = new Student(first, last, 123456 , (float)1.9);
+  cout << "student created" << endl;
+
+  cout << test->getFirst() << endl;
+  cout << test->getLast() << endl;
+  cout << test->getID() << endl;
+  cout << test->getGPA() << endl;
+  
+  Node* creativeNodeName = new Node(test);
+
+  //then add next node to previous node
 }
 
 void printStudent() {
