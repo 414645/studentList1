@@ -60,17 +60,9 @@ int main() {
 
 //needs recursion so two adds one here and then one for recursion
 //sorts from least to greatest Id of were to put new student
-void addStudent(Node* &head, Node* current, Node* previous, Student* newStudent) {
-  /*
-  cout << "student created" << endl;
-  cout << newStudent->getFirst() << endl;
-  cout << newStudent->getLast() << endl;
-  cout << newStudent->getID() << endl;
-  cout << newStudent->getGPA() << endl;
-  //*/
-  //Node* creativeNodeName = new Node(test);
-
-  //get next node
+void addStudent(Node* &head, Node* current, Node* previous,
+		Student* newStudent) {
+  //figure out if we add it here or move to next place in list
   if (current != NULL) {
     //if studentID > current Location in list studentID go to next
     if (newStudent->getID() > current->getStudent()->getID()) {
@@ -87,16 +79,37 @@ void addStudent(Node* &head, Node* current, Node* previous, Student* newStudent)
 	//put it here next we are at end of list
 
 	cout << "end of list" << endl;
-	
+    
+	//add new one (end of list so next is void)
 	current = new Node(newStudent);
+	//reset pointers
+	if (previous != NULL) {
+	  //if it is not first thing in list have something pointing to it
+	  previous->setNext(current);
+	}
+	
       }
     }
     //studentId is <= to current location so add it here
     else {
 
       cout << "<= to current location so add it" << endl;
-      
+
+      //
+      //add new one
+      //next = new Node();
+      Node* next = current->getNext();
       current = new Node(newStudent);
+      //reset pointers
+      if (previous != NULL) {
+	//if it is not first thing in list have something pointing to it
+	previous->setNext(current);
+      }
+      current->setNext(next);
+      if (current->getNext() == next) {
+	cout << "party" << endl;
+      }
+      
     }
   }
   else {
