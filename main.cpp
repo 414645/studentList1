@@ -71,10 +71,11 @@ void addStudent(Node* head, Student* newStudent) {
   
   //improve this later
   Node* current = head;
+  //if head is NULL make it non null
   if (current == NULL) {
-    cout << "added first thing in list" << endl;
+    //cout << "added first thing in list" << endl;
     head = new Node(newStudent);
-    //cout << head->getStudent()->getFirst() << endl;;
+    cout << head->getStudent()->getFirst() << endl;
   }
   else {
     while (current->getNext() != NULL) {
@@ -90,8 +91,13 @@ void printStudent(Node* head, Node* next) {
   //check if it is first thing in list
   if (next == head) {
     cout << "StudentList:" << endl;
+    if (next != NULL) {
+      cout << "party!" << endl;
+    }
+    if (head != NULL) {
+      cout << "party2" << endl;
+    }
   }
-  cout << "?";
   //cout next student
   if (next != NULL) {
     cout << "next != NULL" << endl;
