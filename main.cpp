@@ -73,8 +73,10 @@ void addStudent(Node* head) {
   //improve this later
   Node* current = head;
   if (current == NULL) {
+    cout << "added first thing in list" << endl;
     //test is name of student created
     head = new Node(test);
+    //cout << head->getStudent()->getFirst() << endl;;
   }
   else {
     while (current->getNext() != NULL) {
@@ -91,9 +93,16 @@ void printStudent(Node* head, Node* next) {
   if (next == head) {
     cout << "StudentList:" << endl;
   }
+  cout << "?";
   //cout next student
   if (next != NULL) {
-    cout << next->getStudent()->getFirst() << " ";
+    cout << "next != NULL" << endl;
+    cout << next->getStudent()->getFirst() << ", ";
+    cout << next->getStudent()->getLast() << ", ";
+    cout << next->getStudent()->getID() << ", ";
+    cout << next->getStudent()->getGPA() << endl;
+    //dont forgetrecusion
+    printStudent(head, next->getNext());
   }
 }
 
