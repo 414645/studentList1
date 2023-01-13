@@ -11,7 +11,7 @@ using namespace std;
 
 void addStudent(Node* &head, Node* current, Node* previous,
 		Student* newStudent);
-void printStudent(Node* head, Node* next);
+void printStudent(Node* head, Node* current);
 void deleteStudent(Node* &head);
 void averageStudent(Node* head);
 
@@ -74,74 +74,57 @@ void addStudent(Node* &head, Node* current, Node* previous, Student* newStudent)
   if (current != NULL) {
     //if studentID > current Location in list studentID go to next
     if (newStudent->getID() > current->getStudent()->getID()) {
+
+      cout << "check if next is void" << endl;
+      
       if (current->getNext() != NULL) {
-	//next is not void -> go next
-	//&current;
-	//&current->getNext();
+
+	cout << "goiing next " << endl;
+	
 	addStudent(head, current->getNext(), current, newStudent);
       }
       else {
-	//put it here next is a void pointer
+	//put it here next we are at end of list
+
+	cout << "end of list" << endl;
+	
 	current = new Node(newStudent);
       }
     }
-    //studentId is <= to current location so add it
+    //studentId is <= to current location so add it here
     else {
+
+      cout << "<= to current location so add it" << endl;
+      
       current = new Node(newStudent);
     }
-    //cout << "go to next node" << endl;
-    //Node* next = current->getNext();
   }
   else {
     Node* next = NULL;
     if (previous == NULL) {
+      cout << "replace head node" << endl;
       //repaces head node
       head = new Node(newStudent);
     }
   }
-  //Node* previous = NULL;
-  //check if student id is greater then next student id
-  //if (
-  
-
-  /*
-  //if head is NULL make it non null
-  if (current == NULL) {
-    //cout << "added first thing in list" << endl;
-    head = new Node(newStudent);
-    cout << head->getStudent()->getFirst() << endl;
-  }
-  else {
-    while (current->getNext() != NULL) {
-      current = current->getNext();
-    }
-    current->setNext(new Node(newStudent));
-    
-  }
-  */
 }
 
-void printStudent(Node* head, Node* next) {
-  //cout << "print" << endl;
+void printStudent(Node* head, Node* current) {
+  cout << "prining" << endl;
   //check if it is first thing in list
-  if (next == head) {
+  if (current == head) {
     cout << "StudentList:" << endl;
-    if (next != NULL) {
-      cout << "party!" << endl;
-    }
-    if (head != NULL) {
-      cout << "party2" << endl;
-    }
   }
   //cout next student
-  if (next != NULL) {
-    cout << "next != NULL" << endl;
-    cout << next->getStudent()->getFirst() << ", ";
-    cout << next->getStudent()->getLast() << ", ";
-    cout << next->getStudent()->getID() << ", ";
-    cout << next->getStudent()->getGPA() << endl;
+  if (current != NULL) {
+    //cout << "next != NULL" << endl;
+    cout << current->getStudent()->getFirst() << ", ";
+    cout << current->getStudent()->getLast() << ", ";
+    cout << current->getStudent()->getID() << ", ";
+    cout << current->getStudent()->getGPA() << endl;
     //dont forgetrecusion
-    printStudent(head, next->getNext());
+    printStudent(head, current->getNext());
+    cout << "end" << endl;
   }
 }
 
