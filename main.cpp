@@ -9,7 +9,7 @@ using namespace std;
 //
 //This is a test class for the linked lists project
 
-void addStudent(Node* head);
+void addStudent(Node* head, Student* newStudent);
 void printStudent(Node* head, Node* next);
 void deleteStudent(Node* head);
 void averageStudent(Node* head);
@@ -25,7 +25,18 @@ int main() {
     //ADD PRINT DELETE AVERAGE QUIT else HELP
     cin.getline(input, 80);
     if (strcmp(input, "ADD") == 0) {
-      addStudent(head);
+      char first[10];
+      char last[10];
+      //char* input[10];
+      //char* input[10];
+      
+      cout << "Enter the Students first name" << endl;
+      cin.getline(first, 10);
+      cout << "Enter the Students last name" << endl;
+      cin.getline(last, 10);
+      
+      Student* newStudent = new Student(first, last, 123456 , (float)1.9);
+      addStudent(head, newStudent);
     }
     if (strcmp(input, "PRINT") == 0) {
       printStudent(head, head);
@@ -48,41 +59,28 @@ int main() {
 //ADD needs first, last, id, gpa
 //needs recursion so two adds one here and then one for recursion
 //sorts from least to greatest Id of were to put new student
-void addStudent(Node* head) {
-  char first[10];
-  char last[10];
-  //char* input[10];
-  //char* input[10];
-  
-  cout << "Enter the Students first name" << endl;
-  cin.getline(first, 10);
-  cout << "Enter the Students last name" << endl;
-  cin.getline(last, 10);
-
-  Student* test = new Student(first, last, 123456 , (float)1.9);
+void addStudent(Node* head, Student* newStudent) {
   /*
   cout << "student created" << endl;
-
-  cout << test->getFirst() << endl;
-  cout << test->getLast() << endl;
-  cout << test->getID() << endl;
-  cout << test->getGPA() << endl;
-  */
+  cout << newStudent->getFirst() << endl;
+  cout << newStudent->getLast() << endl;
+  cout << newStudent->getID() << endl;
+  cout << newStudent->getGPA() << endl;
+  //*/
   //Node* creativeNodeName = new Node(test);
   
   //improve this later
   Node* current = head;
   if (current == NULL) {
     cout << "added first thing in list" << endl;
-    //test is name of student created
-    head = new Node(test);
+    head = new Node(newStudent);
     //cout << head->getStudent()->getFirst() << endl;;
   }
   else {
     while (current->getNext() != NULL) {
       current = current->getNext();
     }
-    current->setNext(new Node(test));
+    current->setNext(new Node(newStudent));
     
   }
 }
