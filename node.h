@@ -23,9 +23,8 @@ class Node {
   void setNext(Node*);
   
  private:
-  //absoultit butchered come back later
-  Node* nextNode = new Node;
-  Student* myStudent = new Student;
+  Node* nextNode = new Node();
+  Student* myStudent = new Student();
   //none?
 };
 

@@ -6,7 +6,7 @@
 using namespace std;
 
 Node::Node() {
-
+  cout << "a blank node was created" << endl;
 }
 
 

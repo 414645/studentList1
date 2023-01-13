@@ -66,8 +66,12 @@ void addStudent() {
   cout << test->getID() << endl;
   cout << test->getGPA() << endl;
   
-  Node* creativeNodeName = new Node(test);
+  //Node* creativeNodeName = new Node(test);
+  
+  //Node* N = new Node();
 
+  Node* n = new Node();
+  
   //then add next node to previous node
 }
 
