@@ -9,31 +9,32 @@ using namespace std;
 //
 //This is a test class for the linked lists project
 
-void addStudent();
-void printStudent();
-void deleteStudent();
-void averageStudent();
+void addStudent(Node* head);
+void printStudent(Node* head, Node* next);
+void deleteStudent(Node* head);
+void averageStudent(Node* head);
 
 int main() {
   cout << "hello world" << endl;
   bool quit = false;
   char input[80];
+  Node* head = NULL;
   
   while (quit == false) {
     //get user input
     //ADD PRINT DELETE AVERAGE QUIT else HELP
     cin.getline(input, 80);
     if (strcmp(input, "ADD") == 0) {
-      addStudent();
+      addStudent(head);
     }
     if (strcmp(input, "PRINT") == 0) {
-      printStudent();
+      printStudent(head, head);
     }
     if (strcmp(input, "DELETE") == 0) {
-      deleteStudent();
+      deleteStudent(head);
     }
     if (strcmp(input, "AVERAGE") == 0) {
-      averageStudent();
+      averageStudent(head);
     }
     if (strcmp(input, "QUIT") == 0) {
       quit = true;
@@ -45,9 +46,9 @@ int main() {
 
 
 //ADD needs first, last, id, gpa
-//needs recursion
+//needs recursion so two adds one here and then one for recursion
 //sorts from least to greatest Id of were to put new student
-void addStudent() {
+void addStudent(Node* head) {
   char first[10];
   char last[10];
   //char* input[10];
@@ -59,34 +60,50 @@ void addStudent() {
   cin.getline(last, 10);
 
   Student* test = new Student(first, last, 123456 , (float)1.9);
+  /*
   cout << "student created" << endl;
 
   cout << test->getFirst() << endl;
   cout << test->getLast() << endl;
   cout << test->getID() << endl;
   cout << test->getGPA() << endl;
-  
+  */
   //Node* creativeNodeName = new Node(test);
   
-  //Node* N = new Node();
-
-  Node* n = new Node();
-  
-  //then add next node to previous node
+  //improve this later
+  Node* current = head;
+  if (current == NULL) {
+    //test is name of student created
+    head = new Node(test);
+  }
+  else {
+    while (current->getNext() != NULL) {
+      current = current->getNext();
+    }
+    current->setNext(new Node(test));
+    
+  }
 }
 
-void printStudent() {
-  
-  cout << "print" << endl;
+void printStudent(Node* head, Node* next) {
+  //cout << "print" << endl;
+  //check if it is first thing in list
+  if (next == head) {
+    cout << "StudentList:" << endl;
+  }
+  //cout next student
+  if (next != NULL) {
+    cout << next->getStudent()->getFirst() << " ";
+  }
 }
 
-void deleteStudent() {
+void deleteStudent(Node* head) {
   //delete needs id
   
   cout << "del" << endl;
 }
 
-void averageStudent() {
+void averageStudent(Node* head) {
 
   cout << "average" << endl;
 }
