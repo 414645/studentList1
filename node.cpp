@@ -7,22 +7,24 @@ using namespace std;
 
 Node::Node() {
   cout << "a blank node was created" << endl;
+  nextNode = NULL;
 }
 
 
 Node::Node(Student* newStudent) {
-  cout << "hello world" << endl;
+  //cout << "hello world" << endl;
   myStudent = newStudent;
-  //line of code above works
-
-  //do something about node* not existing
+  nextNode = NULL;
+  
 }
 
 
 Node::~Node() {
-
+  //free both node and student
+  //student needsto be deleted
+  //in a way that calls its own deconstructor
 }
-/*
+
 Node* Node::getNext() {
   return nextNode;
 }
@@ -32,6 +34,6 @@ Student* Node::getStudent() {
 }
 
 void Node::setNext(Node* newNode) {
-  //nextNode = newNodde
+  nextNode = newNode;
 }
-*/
+

@@ -18,13 +18,13 @@ class Node {
   ~Node(); //all delete
   
   //required funcions
-  //Node* getNext();
-  //Student* getStudent();
-  //void setNext(Node*);
+  Node* getNext();
+  Student* getStudent();
+  void setNext(Node*);
   
  private:
-  //Causes segmentaiton fault
-  //Node* nextNode = new Node();
+  //Causes segmentaiton fault, fine now 
+  Node* nextNode;
 
   //just fine
   Student* myStudent = new Student();
