@@ -22,7 +22,7 @@ Node::Node(Student* newStudent) {
 Node::~Node() {
 
 }
-
+/*
 Node* Node::getNext() {
   return nextNode;
 }
@@ -34,4 +34,4 @@ Student* Node::getStudent() {
 void Node::setNext(Node* newNode) {
   //nextNode = newNodde
 }
-
+*/
