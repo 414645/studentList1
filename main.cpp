@@ -9,9 +9,10 @@ using namespace std;
 //
 //This is a test class for the linked lists project
 
-void addStudent(Node* head, Student* newStudent);
+void addStudent(Node* &head, Node* current, Node* previous,
+		Student* newStudent);
 void printStudent(Node* head, Node* next);
-void deleteStudent(Node* head);
+void deleteStudent(Node* &head);
 void averageStudent(Node* head);
 
 int main() {
@@ -36,12 +37,13 @@ int main() {
       cin.getline(last, 10);
       
       Student* newStudent = new Student(first, last, 123456 , (float)1.9);
-      addStudent(head, newStudent);
+      addStudent(head, head, NULL, newStudent);
     }
     if (strcmp(input, "PRINT") == 0) {
       printStudent(head, head);
     }
     if (strcmp(input, "DELETE") == 0) {
+      //ask what one and that gets sent too
       deleteStudent(head);
     }
     if (strcmp(input, "AVERAGE") == 0) {
@@ -56,10 +58,9 @@ int main() {
 
 
 
-//ADD needs first, last, id, gpa
 //needs recursion so two adds one here and then one for recursion
 //sorts from least to greatest Id of were to put new student
-void addStudent(Node* head, Student* newStudent) {
+void addStudent(Node* &head, Node* current, Node* previous, Student* newStudent) {
   /*
   cout << "student created" << endl;
   cout << newStudent->getFirst() << endl;
@@ -68,9 +69,42 @@ void addStudent(Node* head, Student* newStudent) {
   cout << newStudent->getGPA() << endl;
   //*/
   //Node* creativeNodeName = new Node(test);
+
+  //get next node
+  if (current != NULL) {
+    //if studentID > current Location in list studentID go to next
+    if (newStudent->getID() > current->getStudent()->getID()) {
+      if (current->getNext() != NULL) {
+	//next is not void -> go next
+	//&current;
+	//&current->getNext();
+	addStudent(head, current->getNext(), current, newStudent);
+      }
+      else {
+	//put it here next is a void pointer
+	current = new Node(newStudent);
+      }
+    }
+    //studentId is <= to current location so add it
+    else {
+      current = new Node(newStudent);
+    }
+    //cout << "go to next node" << endl;
+    //Node* next = current->getNext();
+  }
+  else {
+    Node* next = NULL;
+    if (previous == NULL) {
+      //repaces head node
+      head = new Node(newStudent);
+    }
+  }
+  //Node* previous = NULL;
+  //check if student id is greater then next student id
+  //if (
   
-  //improve this later
-  Node* current = head;
+
+  /*
   //if head is NULL make it non null
   if (current == NULL) {
     //cout << "added first thing in list" << endl;
@@ -84,6 +118,7 @@ void addStudent(Node* head, Student* newStudent) {
     current->setNext(new Node(newStudent));
     
   }
+  */
 }
 
 void printStudent(Node* head, Node* next) {
@@ -110,7 +145,7 @@ void printStudent(Node* head, Node* next) {
   }
 }
 
-void deleteStudent(Node* head) {
+void deleteStudent(Node* &head) {
   //delete needs id
   
   cout << "del" << endl;
