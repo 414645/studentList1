@@ -66,31 +66,38 @@ int main() {
 //sorts from least to greatest Id of were to put new student
 void addStudent(Node* &head, Node* current, Node* previous,
 		Student* newStudent) {
+  cout << "addStudent Called" << endl;
+  cout << endl;
+  cout << endl;
+
   //figure out if we add it here or move to next place in list
   if (current != NULL) {
+    cout << "current != NULL" << endl;
+
     //if studentID > current Location in list studentID go to next
-    if (newStudent->getID() > current->getStudent()->getID()) {
+    if (newStudent->getID() > current->getStudent()->getID()) {      
+      cout << "studnetID > current spots studentID" << endl;
 
-      cout << "check if next is void" << endl;
-      
       if (current->getNext() != NULL) {
-
 	cout << "goiing next " << endl;
 	
 	addStudent(head, current->getNext(), current, newStudent);
       }
       else {
 	//put it here next we are at end of list
-
 	cout << "end of list" << endl;
     
 	//add new one (end of list so next is void)
-	current = new Node(newStudent);
+        Node* newNode = new Node(newStudent);
 	//reset pointers
-	if (previous != NULL) {
+	current->setNext(newNode);
+	/*if (previous != NULL) {
+	  cout << "not first thing" << endl;
+	  
 	  //if it is not first thing in list have something pointing to it
 	  previous->setNext(current);
 	}
+	//*/
 	
       }
     }
