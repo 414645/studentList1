@@ -28,15 +28,19 @@ int main() {
     if (strcmp(input, "ADD") == 0) {
       char first[10];
       char last[10];
-      //char* input[10];
-      //char* input[10];
-      
+      int ID;
+      float GPA;
+      //get studnet info
       cout << "Enter the Students first name" << endl;
       cin.getline(first, 10);
       cout << "Enter the Students last name" << endl;
       cin.getline(last, 10);
-      
-      Student* newStudent = new Student(first, last, 123456 , (float)1.9);
+      cout << "Enter the Students ID number" << endl;
+      cin >> ID;
+      cout << "Enter the Students GPA" << endl;
+      cin >> GPA;
+      //add student
+      Student* newStudent = new Student(first, last, ID , GPA);
       addStudent(head, head, NULL, newStudent);
     }
     if (strcmp(input, "PRINT") == 0) {
