@@ -77,7 +77,7 @@ void addStudent(Node* &head, Node* current, Node* previous,
     //if studentID > current Location in list studentID go to next
     if (newStudent->getID() > current->getStudent()->getID()) {      
       cout << "studnetID > current spots studentID" << endl;
-
+      
       if (current->getNext() != NULL) {
 	cout << "goiing next " << endl;
 	
@@ -91,33 +91,38 @@ void addStudent(Node* &head, Node* current, Node* previous,
         Node* newNode = new Node(newStudent);
 	//reset pointers
 	current->setNext(newNode);
-	/*if (previous != NULL) {
-	  cout << "not first thing" << endl;
-	  
-	  //if it is not first thing in list have something pointing to it
-	  previous->setNext(current);
-	}
-	//*/
-	
       }
     }
     //studentId is <= to current location so add it here
     else {
-
       cout << "<= to current location so add it" << endl;
-
-      //
-      //add new one
-      //next = new Node();
-      Node* next = new Node();
-      next = current->getNext();
-      current = new Node(newStudent);
-      //reset pointers
-      if (previous != NULL) {
-	cout << "not first in list" << endl;
-	//if it is not first thing in list have something pointing to it
-	previous->setNext(current);
+      //This does not work specificly if it is the first one
+      
+      if (previous == NULL) {
+	//if previous is 0 it breaks since head
+	//anything before head is neverchecked ever agian
+	cout << "first" << endl;	
+	cout << "replace head node" << endl;
+	//adds new one after head
+	//Node* LocalNextNode = head->getNext;
+	
+	Node* newNode = new Node(head->getStudent);
+	newNode->setNext(head->getNext);
+	//replaces head node;
+	head = new Node(newStudent);
+	head->setNext(newNode);
+    
       }
+      else {
+      Node* newNode = new Node(newStudent);
+      previous->setNext(newNode);
+      newNode->setNext(current);
+      }
+      //reset pointers
+      
+      //current->setNext(newNode);
+
+      /*
       cout << "Adress: " << next << endl;;
       //cout << next->getStudent()->getFirst();
       current->setNext(next);
@@ -125,6 +130,7 @@ void addStudent(Node* &head, Node* current, Node* previous,
 	cout << "party" << endl;
 	//cout << next->getStudent()->getFirst() << endl;
       }
+      //*/
       
     }
   }
