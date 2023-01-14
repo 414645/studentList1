@@ -98,16 +98,21 @@ void addStudent(Node* &head, Node* current, Node* previous,
       //
       //add new one
       //next = new Node();
-      Node* next = current->getNext();
+      Node* next = new Node();
+      next = current->getNext();
       current = new Node(newStudent);
       //reset pointers
       if (previous != NULL) {
+	cout << "not first in list" << endl;
 	//if it is not first thing in list have something pointing to it
 	previous->setNext(current);
       }
+      cout << "Adress: " << next << endl;;
+      //cout << next->getStudent()->getFirst();
       current->setNext(next);
       if (current->getNext() == next) {
 	cout << "party" << endl;
+	//cout << next->getStudent()->getFirst() << endl;
       }
       
     }

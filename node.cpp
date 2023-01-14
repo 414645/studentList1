@@ -23,6 +23,8 @@ Node::~Node() {
   //free both node and student
   //student needsto be deleted
   //in a way that calls its own deconstructor
+  delete nextNode;
+  delete myStudent;
 }
 
 Node* Node::getNext() {

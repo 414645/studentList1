@@ -19,7 +19,8 @@ Student::Student(char* newFirst,
 }
 
 Student::~Student() {
-  
+  delete first;
+  delete last;
 }
 
 char* Student::getFirst() {
