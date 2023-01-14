@@ -98,26 +98,34 @@ void addStudent(Node* &head, Node* current, Node* previous,
       cout << "<= to current location so add it" << endl;
       //This does not work specificly if it is the first one
       
-      if (previous == NULL) {
+      //if (previous == NULL) {
 	//if previous is 0 it breaks since head
 	//anything before head is neverchecked ever agian
-	cout << "first" << endl;	
-	cout << "replace head node" << endl;
+	//cout << "first" << endl;	
+	//cout << "replace head node" << endl;
 	//adds new one after head
 	//Node* LocalNextNode = head->getNext;
-	
+
+	/*
 	Node* newNode = new Node(head->getStudent);
 	newNode->setNext(head->getNext);
 	//replaces head node;
 	head = new Node(newStudent);
 	head->setNext(newNode);
-    
+	//*/
+      //}
+      
+      Node* newNode = new Node(newStudent);
+      newNode->setNext(current);
+
+      if (previous == NULL) {
+	cout << "new head" << endl;
+	head = newNode;
       }
       else {
-      Node* newNode = new Node(newStudent);
-      previous->setNext(newNode);
-      newNode->setNext(current);
+	previous->setNext(newNode);
       }
+      
       //reset pointers
       
       //current->setNext(newNode);
@@ -132,7 +140,7 @@ void addStudent(Node* &head, Node* current, Node* previous,
       }
       //*/
       
-    }
+  }
   }
   else {
     Node* next = NULL;
@@ -164,9 +172,12 @@ void printStudent(Node* head, Node* current) {
 }
 
 void deleteStudent(Node* &head) {
-  //delete needs id
-  
+  //delete needs id  
   cout << "del" << endl;
+  if (head != NULL) {
+    delete head;
+    cout << "deleted head" << endl;
+  }
 }
 
 void averageStudent(Node* head) {
