@@ -12,7 +12,8 @@ using namespace std;
 void addStudent(Node* &head, Node* current, Node* previous,
 		Student* newStudent);
 void printStudent(Node* head, Node* current);
-void deleteStudent(Node* &head);
+void deleteStudent(Node* &head, Node* current, Node* previous,
+		   int identification);
 void averageStudent(Node* head);
 
 int main() {
@@ -48,7 +49,8 @@ int main() {
     }
     if (strcmp(input, "DELETE") == 0) {
       //ask what one and that gets sent too
-      deleteStudent(head);
+      deleteStudent(head, head, NULL,
+		    4); //4 needs to be UI
     }
     if (strcmp(input, "AVERAGE") == 0) {
       averageStudent(head);
@@ -97,23 +99,8 @@ void addStudent(Node* &head, Node* current, Node* previous,
     else {
       cout << "<= to current location so add it" << endl;
       //This does not work specificly if it is the first one
-      
-      //if (previous == NULL) {
-	//if previous is 0 it breaks since head
-	//anything before head is neverchecked ever agian
-	//cout << "first" << endl;	
-	//cout << "replace head node" << endl;
-	//adds new one after head
-	//Node* LocalNextNode = head->getNext;
-
-	/*
-	Node* newNode = new Node(head->getStudent);
-	newNode->setNext(head->getNext);
-	//replaces head node;
-	head = new Node(newStudent);
-	head->setNext(newNode);
-	//*/
-      //}
+      //since it is added before head
+      //so set a new head
       
       Node* newNode = new Node(newStudent);
       newNode->setNext(current);
@@ -129,18 +116,9 @@ void addStudent(Node* &head, Node* current, Node* previous,
       //reset pointers
       
       //current->setNext(newNode);
-
-      /*
-      cout << "Adress: " << next << endl;;
-      //cout << next->getStudent()->getFirst();
-      current->setNext(next);
-      if (current->getNext() == next) {
-	cout << "party" << endl;
-	//cout << next->getStudent()->getFirst() << endl;
-      }
-      //*/
       
-  }
+      
+    }
   }
   else {
     Node* next = NULL;
@@ -171,13 +149,52 @@ void printStudent(Node* head, Node* current) {
   }
 }
 
-void deleteStudent(Node* &head) {
-  //delete needs id  
+void deleteStudent(Node* &head, Node* current, Node* previous,
+		   int identification) {
+  //delete needs id
+  //this will be basically same as add but delete current
+  //and have previous go to current->getNext or void in last clase spot
   cout << "del" << endl;
-  if (head != NULL) {
-    delete head;
-    cout << "deleted head" << endl;
+  
+  //figure out if we there is anything to even delete
+  if (current != NULL) {
+    cout << "current != NULL" << endl;
+    //is it the correct one
+    if (current->getStudent()->getID() == identification) {      
+      //delete it
+      cout << "found a 4" << endl;
+
+      if (previous != NULL) {
+	cout << "pre != null" << endl;
+	if (current->getNext() != NULL) {
+	  cout << "found something to delte" << endl;
+	  previous->setNext(current->getNext());
+	  delete current;
+	}
+	else {
+	  cout << "deleting last" << endl;
+	  previous->setNext(NULL);
+	  delete current;
+	}
+      }
+      else {
+	//if we delete set 2nd to head then delete
+      }
+      
+    }
+    
+    //go next
+    cout << "go next??? " << endl;
+    if (current->getNext() != NULL) {
+      deleteStudent(head, current->getNext(), current, identification);
+    }
+    
   }
+  else {
+    //list is blank nothing to replace
+  }
+
+  
 }
 
 void averageStudent(Node* head) {
