@@ -152,69 +152,81 @@ void printStudent(Node* head, Node* current) {
   }
 }
 
+//this function gave me trouble while coding so it has alot of couts
 void deleteStudent(Node* &head, Node* current, Node* previous,
 		   int identification) {
   //delete needs id
   //this will be basically same as add but delete current
   //and have previous go to current->getNext or void in last clase spot
   //cout << "del" << endl;
-  
-  //figure out if we there is anything to even delete
-  if (current != NULL) {
-    //is it the correct one
-    //cout is a visual check for NULL before seg fault
-    //cout << current->getStudent() << endl;
 
-    //does this id match the one given to delete
-    if (current->getStudent()->getID() == identification) {      
-      //delete it
-      //cout << "found a 4" << endl;
+  if (head->getStudent()->getID() == identification) {
+    //deal with it now!
+    //since there was a seg fault when it was lower in the code
 
-      //figure out how to delete it and do so
-      if (previous != NULL) {
-	//cout << "pre != null" << endl;
-	if (current->getNext() != NULL) {
-	  //cout << "found something to delte" << endl;
-	  previous->setNext(current->getNext());
-	  current = NULL;
-	  delete current;
+    //if we  delete set 2nd to head then delete
+    if (current->getNext() != NULL) {
+      //cout << "head to node" << endl;
+      //head = current->getNext();
+      //cout << "delete" << endl;
+      //current = head;
+      Node* temporary = head;
+      head = head->getNext();
+      //delete temporary;
+      //cout << "?" << endl;
+      //in this case current = head so this works
+    }
+    else {
+      //cout << "head to null" << endl;
+      head = NULL;
+    }
+  }
+  else {
+    //it is not head!!!
+    
+    //figure out if we there is anything to even delete
+    if (current != NULL) {
+      //is it the correct one
+      //cout is a visual check for NULL before seg fault
+      //cout << "!= NULL " <<current->getStudent() << endl;
+      
+      //does this id match the one given to delete
+      if (current->getStudent()->getID() == identification) {      
+	//delete it
+	//cout << "found a 4" << endl;
+	
+	//figure out how to delete it and do so
+	if (previous != NULL) {
+	  //cout << "pre != null" << endl;
+	  if (current->getNext() != NULL) {
+	    //cout << "found something to delte" << endl;
+	    previous->setNext(current->getNext());
+	    current = NULL;
+	    delete current;
+	  }
+	  else {
+	    //a special case that was giving me trouble
+	    //cout << "deleting last" << endl;
+	    previous->setNext(NULL);
+	    current = NULL;
+	    delete current;
+	  }
 	}
-	else {
-	  //a special case that was giving me trouble
-	  //cout << "deleting last" << endl;
-	  previous->setNext(NULL);
-	  current = NULL;
-	  delete current;
-	}
-      }
-      else {
-	//if we delete set 2nd to head then delete
-	if (current->getNext() != NULL) {
-	  head = current->getNext();
-	  delete current;
-	  //in this case current = head so this works
-	}
-	else {
-	  //cout << "head to null" << endl;
-	  head = NULL;
-	}
+	//no else head is deleted further up
       }
     }
     //go next
     //cout << "go next??? " << endl;
     if (current != NULL) {
-      if (current->getNext() != NULL) {
+      if (current->getNext()) {
 	//current + current->getnext() should be non null,
 	//cout << "current->getNext() != null" << endl;
 	deleteStudent(head, current->getNext(), current, identification);
+	//cout << "done" << endl;
       }
     }
     //cout << "did not breack" << endl;
   }
-  else {
-    //list is blank nothing to replace
-  }
-  
 }
 
 void averageStudent(Node* head, Node* current, float value, int entrys) {
