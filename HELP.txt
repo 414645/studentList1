@@ -1,0 +1,8 @@
+When compiling this for studentList 1 the files needed are:
+Node.o
+Student.cpp
+Main.cpp
+
+The capital file names are what my partner used so thier Node is capitalized
+where as mine is not. This is also why there are two copies of student.
+I had to copy it since the node looked for Student not student.
