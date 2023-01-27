@@ -2,12 +2,17 @@
 
 #include "student.h"
 #include "node.h"
+//for set preceison
+#include <iomanip>
 
 using namespace std;
 
 //By Ryan Veith
 //
-//This is a test class for the linked lists project
+//This is a formerly the test class for the linked lists project
+//I expanded t so it now works as intened using recursion
+//it can ADD, DELTETE, and PRINT studetns from the lined list
+//it also can AVERAGE the gpa of students on the list
 
 void addStudent(Node* &head, Node* current, Node* previous,
 		Student* newStudent);
@@ -140,7 +145,7 @@ void printStudent(Node* head, Node* current) {
     cout << current->getStudent()->getFirst() << ", ";
     cout << current->getStudent()->getLast() << ", ";
     cout << current->getStudent()->getID() << ", ";
-    cout << current->getStudent()->getGPA() << endl;
+    cout << setprecision(3) << current->getStudent()->getGPA() << endl;
     //dont forgetrecusion
     printStudent(head, current->getNext());
     //cout << "end" << endl;
@@ -223,7 +228,7 @@ void averageStudent(Node* head, Node* current, float value, int entrys) {
   //if current = null cout average since we are done
   else {
     if (entrys != 0) {
-      cout << "Class Average: " << value/entrys << endl;
+      cout << "Class Average: " << setprecision(3) << value/entrys << endl;
     }
   }
 }
