@@ -14,7 +14,7 @@ void addStudent(Node* &head, Node* current, Node* previous,
 void printStudent(Node* head, Node* current);
 void deleteStudent(Node* &head, Node* current, Node* previous,
 		   int identification);
-void averageStudent(Node* head);
+void averageStudent(Node* head, Node* current, float value, int entrys);
 
 int main() {
   cout << "hello world" << endl;
@@ -56,7 +56,7 @@ int main() {
 		    number); //4 needs to be UI
     }
     if (strcmp(input, "AVERAGE") == 0) {
-      averageStudent(head);
+      averageStudent(head, head, 0, 0);
     }
     if (strcmp(input, "QUIT") == 0) {
       quit = true;
@@ -116,11 +116,6 @@ void addStudent(Node* &head, Node* current, Node* previous,
 	previous->setNext(newNode);
       }
       
-      //reset pointers
-      
-      //current->setNext(newNode);
-      
-      
     }
   }
   else {
@@ -161,9 +156,9 @@ void deleteStudent(Node* &head, Node* current, Node* previous,
   
   //figure out if we there is anything to even delete
   if (current != NULL) {
-    //cout << "current != NULL" << endl;
     //is it the correct one
-    cout << current->getStudent() << endl;
+    //cout is a visual check for NULL before seg fault
+    //cout << current->getStudent() << endl;
 
     //does this id match the one given to delete
     if (current->getStudent()->getID() == identification) {      
@@ -217,6 +212,18 @@ void deleteStudent(Node* &head, Node* current, Node* previous,
   
 }
 
-void averageStudent(Node* head) {
-  cout << "average" << endl;
+void averageStudent(Node* head, Node* current, float value, int entrys) {
+  //cout << "average" << endl;
+  //next student
+  if (current != NULL) {
+    value = value + current->getStudent()->getGPA();
+    entrys++;
+    averageStudent(head, current->getNext(), value, entrys);
+  }
+  //if current = null cout average since we are done
+  else {
+    if (entrys != 0) {
+      cout << "Class Average: " << value/entrys << endl;
+    }
+  }
 }
